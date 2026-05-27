@@ -1,24 +1,42 @@
 // ─── App.jsx ──────────────────────────────────────────────────────
-// Root component. Owns global state (current page, auth).
-// Renders the Navbar, injects global CSS, and routes to the right page.
+// Root component. Owns global state: current page, auth, and theme.
+// Applies theme class to <html>, renders Navbar + MarketTicker + page.
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import CSS from "./styles";
-import Navbar from "./components/Navbar";
+import Navbar        from "./components/Navbar";
+import MarketTicker  from "./components/MarketTicker";
 
-import HomePage       from "./pages/HomePage";
+import HomePage        from "./pages/HomePage";
 import MutualFundsPage from "./pages/MutualFundsPage";
-import SIPPage        from "./pages/SIPPage";
-import CalculatorPage from "./pages/CalculatorPage";
-import AboutPage      from "./pages/AboutPage";
-import LoginPage      from "./pages/LoginPage";
-import SignupPage     from "./pages/SignupPage";
-import DashboardPage  from "./pages/DashboardPage";
+import SIPPage         from "./pages/SIPPage";
+import CalculatorPage  from "./pages/CalculatorPage";
+import AboutPage       from "./pages/AboutPage";
+import LoginPage       from "./pages/LoginPage";
+import SignupPage      from "./pages/SignupPage";
+import DashboardPage   from "./pages/DashboardPage";
 
 export default function App() {
   const [page,       setPage]       = useState("home");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // ── Theme: read saved preference or default to dark ──
+  const [theme, setTheme] = useState(() => localStorage.getItem("gw-theme") || "dark");
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "light") {
+      root.classList.add("light");
+    } else {
+      root.classList.remove("light");
+    }
+    localStorage.setItem("gw-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(t => t === "dark" ? "light" : "dark");
+
+  const isHome = page === "home";
 
   const renderPage = () => {
     switch (page) {
@@ -39,7 +57,16 @@ export default function App() {
   return (
     <>
       <style>{CSS}</style>
-      <Navbar page={page} setPage={setPage} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Navbar
+        page={page}
+        setPage={setPage}
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        theme={theme}
+        toggleTheme={toggleTheme}
+      />
+      {/* Ticker only appears on the Home page, sticky below the navbar */}
+      {isHome && <MarketTicker />}
       {renderPage()}
     </>
   );

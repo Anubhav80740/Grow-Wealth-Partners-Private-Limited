@@ -7,7 +7,7 @@ import { FUNDS } from "../data";
 
 export default function HomePage({ setPage }) {
   return (
-    <div className="page fade-in">
+    <div className="page page-with-ticker fade-in">
 
       {/* ── Hero ── */}
       <div className="hero">
@@ -49,7 +49,7 @@ export default function HomePage({ setPage }) {
       </div>
 
       {/* ── Feature highlights ── */}
-      <div className="section">
+      {/*<div className="section">
         <div className="section-label">Why GrowWealth</div>
         <h2 className="section-title">Everything you need<br />to invest better</h2>
         <p className="section-sub" style={{ marginBottom: 40 }}>
@@ -71,6 +71,52 @@ export default function HomePage({ setPage }) {
             </div>
           ))}
         </div>
+      </div>*/}
+
+            {/* ── Under construction banner ── */}
+      <div className="section">
+        <div style={{
+          border: "1px dashed var(--card-border)",
+          borderRadius: "var(--radius)",
+          padding: "56px 40px",
+          textAlign: "center",
+          background: "var(--green-glow)",
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          {/* Subtle animated dots in the background */}
+          <div style={{
+            position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.06,
+            backgroundImage: "radial-gradient(var(--green) 1.5px, transparent 1.5px)",
+            backgroundSize: "28px 28px",
+          }} />
+ 
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <div style={{ fontSize: 40, marginBottom: 16 }}>🚧</div>
+            <div className="section-label" style={{ margin: "0 auto 16px" }}>In Progress</div>
+            <h2 style={{
+              fontFamily: "var(--font-display)", fontSize: "clamp(22px,4vw,32px)",
+              fontWeight: 700, marginBottom: 12,
+            }}>
+              We're building something great here
+            </h2>
+            <p style={{
+              color: "var(--text-muted)", fontSize: 15, maxWidth: 480,
+              margin: "0 auto 28px", lineHeight: 1.7,
+            }}>
+              This section is currently under development. Our team is working hard to bring you an amazing experience — check back soon!
+            </p>
+            <div style={{ display: "flex", justifyContent: "center", gap: 8 }}>
+              {[1, 2, 3].map(i => (
+                <div key={i} style={{
+                  width: 8, height: 8, borderRadius: "50%",
+                  background: "var(--green)", opacity: 0.3 + i * 0.25,
+                  animation: `pulse ${0.8 + i * 0.2}s ease-in-out infinite alternate`,
+                }} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* ── Top funds preview ── */}
@@ -87,23 +133,79 @@ export default function HomePage({ setPage }) {
         </div>
       </div>
 
-      {/* ── CTA banner ── */}
+{/* ── Contact Us ── */}
       <div style={{ padding: "0 48px 80px" }}>
         <div style={{
           maxWidth: 1200, margin: "0 auto",
           background: "linear-gradient(135deg, var(--navy-3) 0%, rgba(34,197,94,0.08) 100%)",
           border: "1px solid var(--card-border)", borderRadius: 20, padding: "60px 48px",
-          display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 24,
         }}>
-          <div>
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: 32, fontWeight: 700, marginBottom: 10 }}>Start investing today</h2>
-            <p style={{ color: "var(--text-muted)", fontSize: 16 }}>Join 50,000+ investors who trust GrowWealth for their financial journey.</p>
+          {/* Header */}
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <div className="section-label" style={{ margin: "0 auto 16px" }}>Get in Touch</div>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(26px,4vw,38px)", fontWeight: 700, marginBottom: 12 }}>
+              Contact Us Today
+            </h2>
+            <p style={{ color: "var(--text-muted)", fontSize: 16, maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
+              Have questions about investing? Our team of SEBI-registered advisors is here to help you every step of the way.
+            </p>
           </div>
-          <button className="btn btn-primary btn-lg" onClick={() => setPage("signup")}>Create Free Account</button>
+ 
+          {/* Contact cards row */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 40 }}>
+            {[
+              { icon: "📧", label: "Email Us", value: "hello@growwealth.in", sub: "We reply within 24 hours" },
+              { icon: "📞", label: "Call Us", value: "+91 98765 43210", sub: "Mon – Sat, 9 AM – 6 PM" },
+              { icon: "📍", label: "Visit Us", value: "Jodhpur, Rajasthan", sub: "By appointment only" },
+              { icon: "💬", label: "Live Chat", value: "Available on app", sub: "Avg. response: 5 mins" },
+            ].map(c => (
+              <div key={c.label} style={{
+                background: "var(--card)", border: "1px solid var(--card-border)",
+                borderRadius: "var(--radius)", padding: "24px 20px", textAlign: "center",
+                transition: "var(--transition)",
+              }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = "var(--green)"}
+                onMouseLeave={e => e.currentTarget.style.borderColor = "var(--card-border)"}
+              >
+                <div style={{ fontSize: 28, marginBottom: 10 }}>{c.icon}</div>
+                <div style={{ fontSize: 12, color: "var(--text-muted)", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 6 }}>{c.label}</div>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: 15, fontWeight: 600, marginBottom: 4 }}>{c.value}</div>
+                <div style={{ fontSize: 12, color: "var(--text-muted)" }}>{c.sub}</div>
+              </div>
+            ))}
+          </div>
+ 
+          {/* Quick message form */}
+          <div style={{
+            background: "var(--card)", border: "1px solid var(--card-border)",
+            borderRadius: "var(--radius)", padding: "32px",
+          }}>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 600, marginBottom: 20 }}>
+              Send us a message
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+              <div>
+                <label className="form-label">Your Name</label>
+                <input className="form-input" placeholder="Rahul Sharma" />
+              </div>
+              <div>
+                <label className="form-label">Email Address</label>
+                <input className="form-input" type="email" placeholder="rahul@example.com" />
+              </div>
+            </div>
+            <div style={{ marginBottom: 16 }}>
+              <label className="form-label">Message</label>
+              <textarea
+                className="form-input"
+                placeholder="Tell us how we can help you..."
+                rows={4}
+                style={{ resize: "vertical", lineHeight: 1.6 }}
+              />
+            </div>
+            <button className="btn btn-primary btn-lg">Send Message →</button>
+          </div>
         </div>
       </div>
-
-      <Footer setPage={setPage} />
     </div>
   );
 }
