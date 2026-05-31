@@ -21,6 +21,12 @@ export default function App() {
   const [page,       setPage]       = useState("home");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+<<<<<<< HEAD
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    setIsLoggedIn(Boolean(token));
+  }, []);
+=======
   // ── Theme: read saved preference or default to dark ──
   const [theme, setTheme] = useState(() => localStorage.getItem("gw-theme") || "dark");
 
@@ -37,6 +43,7 @@ export default function App() {
   const toggleTheme = () => setTheme(t => t === "dark" ? "light" : "dark");
 
   const isHome = page === "home";
+>>>>>>> 14d70d136a31db08c781d8157fac82c80e28c098
 
   const renderPage = () => {
     switch (page) {
