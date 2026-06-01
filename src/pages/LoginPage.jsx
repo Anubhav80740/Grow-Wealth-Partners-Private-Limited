@@ -26,7 +26,8 @@ export default function LoginPage({ setPage, setIsLoggedIn }) {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("/api/auth/login", {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+      const res = await fetch(`${backendUrl}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password: pass }),
@@ -54,7 +55,8 @@ export default function LoginPage({ setPage, setIsLoggedIn }) {
     setMessage("");
 
     try {
-      const res = await fetch("/api/auth/forgot-password", {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+      const res = await fetch(`${backendUrl}/api/auth/forgot-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

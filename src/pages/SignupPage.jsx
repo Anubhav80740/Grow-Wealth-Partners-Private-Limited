@@ -46,7 +46,8 @@ export default function SignupPage({ setPage, setIsLoggedIn }) {
 
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/signup", {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+      const res = await fetch(`${backendUrl}/api/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, phone, password }),
