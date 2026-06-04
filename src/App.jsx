@@ -20,10 +20,28 @@ import DashboardPage   from "./pages/DashboardPage";
 export default function App() {
   const [page,       setPage]       = useState("home");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // ── Theme: read saved preference or default to dark ──
   const [theme, setTheme] = useState(() => localStorage.getItem("gw-theme") || "dark");
 
+  // ── Auth: check if user has saved token + handle OAuth callback ──
+  useEffect(() => {
+    // Check for token in URL (Google OAuth callback)
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get("token");
+    if (urlToken) {
+      localStorage.setItem("authToken", urlToken);
+      setIsLoggedIn(true);
+      setPage("dashboard");
+      // Clean URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+      return;
+    }
+
+    // Check for saved token
+    const token = localStorage.getItem("authToken");
+    setIsLoggedIn(Boolean(token));
+  }, []);
+
+  // ── Theme: update DOM and persist preference ──
   useEffect(() => {
     const root = document.documentElement;
     if (theme === "light") {
