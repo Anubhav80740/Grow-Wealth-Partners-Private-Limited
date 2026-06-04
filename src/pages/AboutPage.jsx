@@ -22,7 +22,7 @@ export default function AboutPage() {
         <h1 className="section-title">
           We believe everyone<br />deserves to <span className="green">grow wealth</span>
         </h1>
-        <p className="section-sub" style={{ marginBottom: 56 }}>
+        <p className="section-sub" style={{marginBottom: 56, maxWidth: 700, margin: "0 auto 40px" }}>
           GrowWealth Securities is a SEBI-registered investment advisory platform built to make mutual fund investing simple, transparent, and accessible for every Indian.
         </p>
 

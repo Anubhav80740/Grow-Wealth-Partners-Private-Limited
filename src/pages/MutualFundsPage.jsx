@@ -26,7 +26,7 @@ export default function MutualFundsPage() {
       <div className="section">
         <div className="section-label">Browse</div>
         <h1 className="section-title">Mutual Funds</h1>
-        <p className="section-sub" style={{ marginBottom: 36 }}>
+        <p className="section-sub" style={{ marginBottom: 36, maxWidth: 5000, margin: "0 auto 40px" }}>
           Explore 1,000+ hand-picked mutual funds. Filter by category, risk level, and AMC.
         </p>
 

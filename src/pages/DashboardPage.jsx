@@ -89,7 +89,7 @@ export default function DashboardPage({ setPage }) {
                 { label: "Total Units Held",  val: "469.8 units",            color: "var(--text)"  },
                 { label: "Portfolio XIRR",    val: "~22.4% p.a.",            color: "var(--green)" },
               ].map(s => (
-                <div key={s.label} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.04)", fontSize: 14 }}>
+                <div key={s.label} className="quick-stats-item" style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.04)", fontSize: 14 }}>
                   <span style={{ color: "var(--text-muted)" }}>{s.label}</span>
                   <span style={{ color: s.color, fontWeight: 500 }}>{s.val}</span>
                 </div>

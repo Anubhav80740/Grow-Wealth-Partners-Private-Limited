@@ -8,12 +8,12 @@ export default function SIPPage({ setPage }) {
     <div className="page fade-in">
 
       {/* ── Hero ── */}
-      <div className="sip-hero">
+      <div className="sip-hero" style={{ textAlign: "center" }}>
         <div className="section-label">Systematic Investment Plan</div>
         <h1 className="section-title" style={{ fontSize: "clamp(36px,5vw,60px)" }}>
           Invest a little,<br /><span className="green">gain a lot</span>
         </h1>
-        <p className="section-sub" style={{ marginBottom: 40 }}>
+        <p className="section-sub" style={{ marginBottom: 40, maxWidth: 480, margin: "0 auto 40px" }}>
           Start SIPs from as low as ₹100/month. The power of compounding works best with consistency.
         </p>
         <button className="btn btn-primary btn-lg" onClick={() => setPage("calculator")}>

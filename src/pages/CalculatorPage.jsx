@@ -23,7 +23,7 @@ export default function CalculatorPage() {
       <div className="section">
         <div className="section-label">Tools</div>
         <h1 className="section-title">Investment Calculator</h1>
-        <p className="section-sub" style={{ marginBottom: 36 }}>
+        <p className="section-sub" style={{ marginBottom: 36, maxWidth: 400, margin: "0 auto 40px" }}>
           Plan your financial future. See how your money grows over time.
         </p>
 
